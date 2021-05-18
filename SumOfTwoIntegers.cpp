@@ -9,7 +9,7 @@
 #include <bitset>
 #include <cassert>
 std::bitset<32> addTwoNumbers(std::bitset<32> a, std::bitset<32> b){
-    bool remainder = 0;
+    int8_t remainder = 0;
     std::bitset<32> res(0);
     for(size_t i = 0; i <a.size(); ++i){
         int val = a[i]^b[i];
@@ -26,13 +26,8 @@ std::bitset<32> addTwoNumbers(std::bitset<32> a, std::bitset<32> b){
             if(val == 1){
                 remainder = 1;
             }else{
-                if(a[i] == 1){
-                    res.set(i);
-                    remainder  =1;
-                }else{
-                    res.set(i);
-                    remainder = 0;
-                }
+                res.set(i);
+                remainder = a[i] == 1? 1:0;
             }
         }
     }
