@@ -1,21 +1,15 @@
 /*
- *
- * 
  * Given a string s, return the longest palindromic substring in s.
  * Input: s = "babad"
  * Output: "bab"
  * Note: "aba" is also a valid answer.
- * 
- * 
  */
 
 #include <iostream>
 #include <cassert>
 
-bool isPalindrom(const std::string &s, int left, int right)
+bool isPalindrom(const std::string &s, int l, int r)
 {
-    int l = left;
-    int r = right - 1;
     while (l < r)
     {
         if (s[l++] != s[r--])
@@ -32,7 +26,7 @@ std::string longestPalindrome(std::string s)
         int itNumber = s.size() - maxLen + 1;
         for (int pos = 0; pos < itNumber; ++pos)
         {
-            if (isPalindrom(s, pos, maxLen + pos))
+            if (isPalindrom(s, pos, maxLen + pos-1))
                 return s.substr(pos, maxLen);
         }
         maxLen--;
