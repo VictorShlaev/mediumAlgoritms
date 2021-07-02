@@ -38,8 +38,8 @@ void printVec(const std::vector<std::vector<int>>& vec){
 void test(){
    std::vector<std::vector<int>> vals{{1,3}, {6,9}};
     std::vector<int> newInterval {2,5};
-    auto res = InsInterval::insert(vals, newInterval);
-    InsInterval::printVec(res);
+    auto res = insert(vals, newInterval);
+    printVec(res);
 }
 int main()
 {
