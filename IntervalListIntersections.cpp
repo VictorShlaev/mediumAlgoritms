@@ -11,26 +11,26 @@
 #include <iostream>
 #include <vector>
 std::vector<std::vector<int>> intervalIntersection(std::vector<std::vector<int>>& firstList, std::vector<std::vector<int>>& secondList) {
-
 	int i1 =0;
 	int i2 =0;
 	std::vector<std::vector<int>> res;
 	while(i1 <firstList.size() and i2 < secondList.size()){
-		std::vector<int> tmp(2,-1);
+		int l = -1;
 		if(firstList[i1][0] <= secondList[i2][0] and firstList[i1][1] >= secondList[i2][0]){
-			tmp[0] = secondList[i2][0];
+			l = secondList[i2][0];
 		}else if(firstList[i1][0] >= secondList[i2][0] and firstList[i1][0] <= secondList[i2][1]){
-			tmp[0] = firstList[i1][0];
+			l = firstList[i1][0];
 		}
-		if(tmp[0]!=-1){
+		if(l != -1){
+			int r = 0;
 			if(firstList[i1][1] <= secondList[i2][1]){
-				tmp[1] = firstList[i1][1];
+				r = firstList[i1][1];
 				i1++;
 			}else{
-				tmp[1] = secondList[i2][1];
+				r = secondList[i2][1];
 				i2++;
 			}
-			res.push_back(tmp);
+			res.push_back({l,r});
 		}else{
 			if(firstList[i1][1] <= secondList[i2][1]) i1++;
 			else i2++;
@@ -39,7 +39,6 @@ std::vector<std::vector<int>> intervalIntersection(std::vector<std::vector<int>>
 	}
 	return res;
 }
-
 int main(){
 	std::vector<std::vector<int>> t1{{0,2},{5,10},{13,23},{24,25}};
 	std::vector<std::vector<int>> t2{{1,5},{8,12},{15,24},{25,26}};
